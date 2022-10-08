@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        create: (_) => ScheduleCubit(),
+        create: (_) => ScheduleCubit()..getSchedule(),
         child: const ScheduleScreen(),
       ),
     );

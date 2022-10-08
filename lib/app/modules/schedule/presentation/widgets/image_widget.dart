@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../cubit/schedule_cubit.dart';
 
 class ImageWidget extends StatelessWidget {
   const ImageWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final scheduleCubit = BlocProvider.of<ScheduleCubit>(context);
+
     return Stack(
       children: [
         Container(
           height: 200.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              image: const DecorationImage(
-                  image: AssetImage('assets/images/cat.jpg'),
-                  fit: BoxFit.cover
-              ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: const DecorationImage(
+                image: AssetImage('assets/images/cat.jpg'), fit: BoxFit.cover),
+          ),
         ),
-        ),
-
         Positioned(
           top: 10.0,
           left: 10.0,
@@ -28,19 +30,22 @@ class ImageWidget extends StatelessWidget {
                   color: const Color(0xFFE1D9DC),
                   borderRadius: BorderRadius.circular(20.0)),
               child: Row(
-                children: const [
-                  CircleAvatar(
+                children: [
+                  const CircleAvatar(
                     backgroundColor: Colors.white,
                     radius: 12,
                     child: CircleAvatar(
                       radius: 10,
-                      backgroundImage: AssetImage( 'assets/images/cat.jpg',),
+                      backgroundImage: AssetImage(
+                        //scheduleCubit.scheduleModel[0].tag!.icon!,
+                        'assets/images/cat.jpg',
+                      ),
                     ),
                   ),
-                  SizedBox(width: 10.0),
+                  const SizedBox(width: 10.0),
                   Text(
-                    'Volley Ball',
-                    style: TextStyle(
+                    '${scheduleCubit.scheduleModel[0].tag!.title}',
+                    style: const TextStyle(
                       fontSize: 12.0,
                       fontFamily: 'Poppins-semiBold',
                       fontWeight: FontWeight.w500,

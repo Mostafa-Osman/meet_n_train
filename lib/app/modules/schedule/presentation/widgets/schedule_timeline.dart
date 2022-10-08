@@ -17,6 +17,7 @@ class ScheduleTimeline extends StatelessWidget {
         indicatorStyle: IndicatorStyle(
           height: 55.0,
           width: 35.0,
+          indicatorXY: 0.1,
           indicator: Container(
             padding: const EdgeInsets.only(top: 10.0),
             decoration: const BoxDecoration(
@@ -36,15 +37,6 @@ class ScheduleTimeline extends StatelessWidget {
             ),
           ),
         ),
-        // endChild: Container(
-        //   constraints: const BoxConstraints(
-        //     minWidth: 10,
-        //   ),
-        //   color: Colors.lightGreenAccent,
-        // ),
-        // startChild: Container(
-        //   color: Colors.amberAccent,
-        // ),
       ),
     );
   }
