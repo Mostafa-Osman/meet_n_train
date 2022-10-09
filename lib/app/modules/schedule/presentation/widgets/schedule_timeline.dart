@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeline_tile/timeline_tile.dart';
-
 import '../../../../common/themes/app_colors.dart';
 import '../../../../widgets/defaulr_text.dart';
 import '../cubit/schedule_cubit.dart';

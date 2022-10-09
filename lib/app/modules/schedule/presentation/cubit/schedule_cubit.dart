@@ -14,7 +14,7 @@ class ScheduleCubit extends Cubit<ScheduleState> {
   final scheduleRepo = ScheduleRepo();
   int index = 0;
   String date = '';
-  String dateName = '';
+  String nameOfDay = '';
   String numberOfDate = '';
   List<ScheduleModel> scheduleModel = [];
 
@@ -52,7 +52,7 @@ class ScheduleCubit extends Cubit<ScheduleState> {
 
   void titleDate() {
     numberOfDate = formatDate(scheduleModel[index].date, 'dd');
-    dateName = formatDate(scheduleModel[index].date, 'EEEE');
+    nameOfDay = formatDate(scheduleModel[index].date, 'EEEE');
     date = formatDate(scheduleModel[index].date, 'MMMM yyyy');
     log(index.toString());
     emit(RefreshUi());

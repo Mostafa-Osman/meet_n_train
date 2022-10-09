@@ -81,7 +81,7 @@ class ScheduleScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     DefaultText(
-                                        title:  scheduleCubit.dateName,
+                                        title:  scheduleCubit.nameOfDay,
                                       textColor: AppColors.greyColor,
                                       fontSize: 15.0,
                                     ),
