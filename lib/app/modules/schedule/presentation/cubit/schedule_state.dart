@@ -14,3 +14,5 @@ class ScheduleError extends ScheduleState {
 
   ScheduleError({required this.errorMessage});
 }
+class RefreshUi extends ScheduleState {}
+

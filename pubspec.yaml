@@ -35,6 +35,8 @@ dependencies:
   flutter_bloc: ^8.1.1
   #=========== h
   http: ^0.13.5
+  #=========== i
+  intl: ^0.17.0
   #=========== s
   avatar_stack: ^1.1.2
   #=========== t

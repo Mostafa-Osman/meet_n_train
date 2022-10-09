@@ -1,9 +1,6 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:http/http.dart' as http;
-
-import '../model/schedule_model.dart';
 
 class ScheduleWebservice {
   Future<List<dynamic>> getSchedule() async {
@@ -16,9 +13,7 @@ class ScheduleWebservice {
     };
     final response = await http.get(Uri.parse(url), headers: headers);
     final data = jsonDecode(response.body);
-    log(data.toString());
-    // if (data['statusCode'] != 200) throw 'server error';
-    log(data.toString());
+    // log(data.toString());
     return data;
   }
 }

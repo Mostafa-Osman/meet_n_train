@@ -5,7 +5,8 @@ import 'package:meet_n_train/app/modules/schedule/presentation/widgets/image_wid
 import 'package:meet_n_train/app/modules/schedule/presentation/widgets/joined_users.dart';
 
 class CustomCart extends StatelessWidget {
-  const CustomCart({Key? key}) : super(key: key);
+  const CustomCart({Key? key, required this.index}) : super(key: key);
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -23,39 +24,42 @@ class CustomCart extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const ImageWidget(),
+            ImageWidget(
+              index: index,
+            ),
             const SizedBox(height: 10.0),
             Text(
-              //todo ظبط التايم زي اللي ف الصوره
-              '${scheduleCubit.scheduleModel[0].date}',
-              //'sunday,13 Nov 2022 . 3:17 pm',
+              scheduleCubit
+                  .formatDate(scheduleCubit.scheduleModel[index].date,
+                      'EEEE, dd MMMM yyyy . hh:mm a')
+                  .toString(),
               style: const TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 10.0,
                   fontFamily: 'Poppins-semiBold',
                   fontWeight: FontWeight.w500,
                   color: Colors.grey),
             ),
             const SizedBox(height: 5.0),
-            const Text(
-              'All Payments',
-              style: TextStyle(
+            Text(
+              scheduleCubit.scheduleModel[index].tag.title,
+              style: const TextStyle(
                   fontSize: 18.0,
                   fontFamily: 'Poppins-semiBold',
                   fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 5.0),
-             Text(
-              '${scheduleCubit.scheduleModel[0].placeName}',
+            Text(
+              scheduleCubit.scheduleModel[index].placeName,
               style: const TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 10.0,
                   fontFamily: 'Poppins-semiBold',
                   fontWeight: FontWeight.w500,
                   color: Colors.grey),
             ),
             Row(
-              children:  [
+              children: [
                 Text(
-                  '${scheduleCubit.scheduleModel[0].finishDate}',
+                  '${scheduleCubit.scheduleModel[index].cancelledAt ?? index * 3} Days',
                   style: const TextStyle(
                       fontSize: 12.0,
                       fontFamily: 'Poppins-semiBold',
@@ -63,32 +67,41 @@ class CustomCart extends StatelessWidget {
                       color: Color(0xFFFF5040)),
                 ),
                 const Spacer(),
-                const Icon(
-                  Icons.monetization_on_outlined,
-                  color: Color(0xFFFF5040),
-                ),
-                const Icon(
-                  Icons.credit_card,
-                  color: Color(0xFFFF5040),
-                ),
-                const Icon(
-                  Icons.wallet,
-                  color: Color(0xFFFF5040),
-                ),
+                if (scheduleCubit.scheduleModel[index].price.toInt() == 0)
+                  const Icon(
+                    Icons.monetization_on_outlined,
+                    color: Color(0xFFFF5040),
+                  ),
+                if (scheduleCubit.scheduleModel[index].price.toInt() > 0)
+                  const Icon(
+                    Icons.credit_card,
+                    color: Color(0xFFFF5040),
+                  ),
+                if (scheduleCubit.scheduleModel[index].price.toInt() > 0)
+                  const Icon(
+                    Icons.wallet,
+                    color: Color(0xFFFF5040),
+                  ),
+                const SizedBox(width: 10.0),
               ],
             ),
             Row(
-              children: const [
-                JoinedUsers(),
-                Spacer(),
+              children: [
+                JoinedUsers(
+                  index: index,
+                ),
+                const Spacer(),
                 Text(
-                  'AED${100.0}',
-                  style: TextStyle(
+                  scheduleCubit.scheduleModel[index].price == 0
+                      ? 'free'
+                      : 'AED${scheduleCubit.scheduleModel[index].price}',
+                  style: const TextStyle(
                       fontSize: 18.0,
                       fontFamily: 'Poppins-ExtraBold',
                       fontWeight: FontWeight.w800,
                       color: Color(0xFFFF5040)),
                 ),
+                const SizedBox(width: 5.0),
               ],
             ),
           ],

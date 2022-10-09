@@ -10,4 +10,5 @@ class ScheduleRepo {
         .map((e) => ScheduleModel.fromJson(e as Map<String, dynamic>))
         .toList();
   }
+
 }

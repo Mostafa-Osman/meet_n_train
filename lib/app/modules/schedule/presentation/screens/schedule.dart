@@ -72,9 +72,9 @@ class ScheduleScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(width: 10.0),
-                                const Text(
-                                  '11',
-                                  style: TextStyle(
+                                Text(
+                                  scheduleCubit.numberOfDate,
+                                  style: const TextStyle(
                                       fontFamily: 'Poppins',
                                       fontSize: 40.0,
                                       fontWeight: FontWeight.w900),
@@ -82,16 +82,16 @@ class ScheduleScreen extends StatelessWidget {
                                 const SizedBox(width: 5.0),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     Text(
-                                      'Friday',
-                                      style: TextStyle(
+                                      scheduleCubit.dateName,
+                                      style: const TextStyle(
                                           color: Colors.grey,
                                           fontFamily: 'Poppins'),
                                     ),
                                     Text(
-                                      'Nov 2022',
-                                      style: TextStyle(
+                                      scheduleCubit.date,
+                                      style: const TextStyle(
                                           fontSize: 15.0,
                                           fontFamily: 'Poppins-semiBold',
                                           fontWeight: FontWeight.w500),
@@ -101,25 +101,39 @@ class ScheduleScreen extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(height: 10.0),
-                            SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height - 170.0,
-                              width: double.infinity,
-                              child: ListView.builder(
-                                  itemBuilder: (context, index) {
-                                    return Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: const [
-                                        ScheduleTimeline(),
-                                        SizedBox(width: 10.0),
-                                        Expanded(child: CustomCart()),
-                                      ],
-                                    );
-                                  },
-                                  itemCount: 10),
+                            NotificationListener<ScrollNotification>(
+                              onNotification: (ScrollNotification) {
+                                if (ScrollNotification.metrics.pixels >=
+                                    330 * (scheduleCubit.index + 1)) {
+                                  scheduleCubit.incrementIndex();
+                                } else if (ScrollNotification.metrics.pixels <
+                                    230 * (scheduleCubit.index + 1)) {
+                                  scheduleCubit.decrementIndex();
+                                }
+                                return false;
+                              },
+                              child: SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height - 170.0,
+                                width: double.infinity,
+                                child: ListView.builder(
+                                    itemBuilder: (context, index) {
+                                      return Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          ScheduleTimeline(index: index),
+                                          const SizedBox(width: 10.0),
+                                          Expanded(
+                                              child: CustomCart(index: index)),
+                                        ],
+                                      );
+                                    },
+                                    itemCount:
+                                        scheduleCubit.scheduleModel.length),
+                              ),
                             ),
                           ],
                         ));

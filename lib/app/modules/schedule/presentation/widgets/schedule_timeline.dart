@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
+import '../cubit/schedule_cubit.dart';
+
 class ScheduleTimeline extends StatelessWidget {
-  const ScheduleTimeline({Key? key}) : super(key: key);
+  const ScheduleTimeline({Key? key, required this.index}) : super(key: key);
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    final scheduleCubit = BlocProvider.of<ScheduleCubit>(context);
+
     return SizedBox(
       height: 342.0,
       width: 50.0,
@@ -24,14 +30,20 @@ class ScheduleTimeline extends StatelessWidget {
                 color: Color(0xFFFF5040),
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
             child: Column(
-              children: const [
+              children: [
                 Text(
-                  '13',
-                  style: TextStyle(color: Colors.white),
+                  scheduleCubit
+                      .formatDate(
+                          scheduleCubit.scheduleModel[index].date, 'dd')
+                      .toString(),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 Text(
-                  'sun',
-                  style: TextStyle(color: Colors.white),
+                  scheduleCubit
+                      .formatDate(
+                          scheduleCubit.scheduleModel[index].date, 'EE')
+                      .toString(),
+                  style: const TextStyle(color: Colors.white),
                 ),
               ],
             ),

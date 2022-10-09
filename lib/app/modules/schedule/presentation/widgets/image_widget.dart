@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubit/schedule_cubit.dart';
 
 class ImageWidget extends StatelessWidget {
-  const ImageWidget({Key? key}) : super(key: key);
+  const ImageWidget({Key? key, required this.index}) : super(key: key);
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,9 @@ class ImageWidget extends StatelessWidget {
             image: const DecorationImage(
                 image: AssetImage('assets/images/cat.jpg'), fit: BoxFit.cover),
           ),
+          //    NetworkImage(
+          //                 'https:ik.imagekit.io/tnc8pizf9e/${scheduleCubit.scheduleModel[index].images[0].url}?tr=h-200',
+          //               ),
         ),
         Positioned(
           top: 10.0,
@@ -36,15 +40,18 @@ class ImageWidget extends StatelessWidget {
                     radius: 12,
                     child: CircleAvatar(
                       radius: 10,
-                      backgroundImage: AssetImage(
-                        //scheduleCubit.scheduleModel[0].tag!.icon!,
+                      backgroundImage:
+                          // NetworkImage(
+                          //   'https:ik.imagekit.io/tnc8pizf9e/${scheduleCubit.scheduleModel[index].tag.icon}',
+                          // ),
+                          AssetImage(
                         'assets/images/cat.jpg',
                       ),
                     ),
                   ),
                   const SizedBox(width: 10.0),
                   Text(
-                    '${scheduleCubit.scheduleModel[0].tag!.title}',
+                    scheduleCubit.scheduleModel[index].community.title,
                     style: const TextStyle(
                       fontSize: 12.0,
                       fontFamily: 'Poppins-semiBold',
@@ -63,9 +70,11 @@ class ImageWidget extends StatelessWidget {
               decoration: BoxDecoration(
                   color: const Color(0xFFE1D9DC),
                   borderRadius: BorderRadius.circular(20.0)),
-              child: const Text(
-                '8 sport left',
-                style: TextStyle(
+              child: Text(
+                scheduleCubit.scheduleModel[index].spots == 0
+                    ? 'unlimited'
+                    : '${scheduleCubit.scheduleModel[index].spots} sport left',
+                style: const TextStyle(
                   fontSize: 12.0,
                   fontFamily: 'Poppins-semiBold',
                   fontWeight: FontWeight.w500,
