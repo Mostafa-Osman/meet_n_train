@@ -5,6 +5,8 @@ import 'package:meet_n_train/app/modules/schedule/presentation/cubit/schedule_cu
 import 'package:meet_n_train/app/modules/schedule/presentation/widgets/image_widget.dart';
 import 'package:meet_n_train/app/modules/schedule/presentation/widgets/joined_users.dart';
 
+import '../../../../widgets/defaulr_text.dart';
+
 class CustomCart extends StatelessWidget {
   const CustomCart({Key? key, required this.index}) : super(key: key);
   final int index;
@@ -29,43 +31,34 @@ class CustomCart extends StatelessWidget {
               index: index,
             ),
             const SizedBox(height: 10.0),
-            Text(
-              scheduleCubit
-                  .formatDate(scheduleCubit.scheduleModel[index].date,
-                      'EEEE, dd MMMM yyyy . hh:mm a')
-                  .toString(),
-              style:  TextStyle(
-                  fontSize: 10.0,
-                  fontFamily: 'Poppins-semiBold',
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.greyColor),
+            DefaultText(
+                title:      scheduleCubit
+                    .formatDate(scheduleCubit.scheduleModel[index].date,
+                    'EEEE, dd MMMM yyyy . hh:mm a')
+                    .toString(),
+                fontSize: 10.0,
+                fontFamily: 'Poppins-semiBold',
+                 textColor: AppColors.greyColor
             ),
             const SizedBox(height: 5.0),
-            Text(
-              scheduleCubit.scheduleModel[index].tag.title,
-              style: const TextStyle(
-                  fontSize: 18.0,
-                  fontFamily: 'Poppins-semiBold',
-                  fontWeight: FontWeight.w500),
+            DefaultText(
+                title:scheduleCubit.scheduleModel[index].tag.title,
+                fontFamily: 'Poppins-semiBold',
             ),
             const SizedBox(height: 5.0),
-            Text(
-              scheduleCubit.scheduleModel[index].placeName,
-              style:  TextStyle(
-                  fontSize: 10.0,
-                  fontFamily: 'Poppins-semiBold',
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.greyColor),
+            DefaultText(
+              title:scheduleCubit.scheduleModel[index].placeName,
+              fontSize: 10.0,
+              fontFamily: 'Poppins-semiBold',
+              textColor:  AppColors.greyColor,
             ),
             Row(
               children: [
-                Text(
-                  '${scheduleCubit.scheduleModel[index].cancelledAt ?? index * 3} Days',
-                  style: const TextStyle(
-                      fontSize: 12.0,
-                      fontFamily: 'Poppins-semiBold',
-                      fontWeight: FontWeight.w500,
-                      color:AppColors.mainColor),
+                DefaultText(
+                title:  '${scheduleCubit.scheduleModel[index].cancelledAt ?? index * 3} Days',
+                  fontSize: 12.0,
+                  fontFamily: 'Poppins-semiBold',
+                  textColor:AppColors.mainColor,
                 ),
                 const Spacer(),
                 if (scheduleCubit.scheduleModel[index].price.toInt() == 0)
@@ -92,15 +85,13 @@ class CustomCart extends StatelessWidget {
                   index: index,
                 ),
                 const Spacer(),
-                Text(
-                  scheduleCubit.scheduleModel[index].price == 0
+                DefaultText(
+                  title:   scheduleCubit.scheduleModel[index].price == 0
                       ? 'free'
                       : 'AED${scheduleCubit.scheduleModel[index].price}',
-                  style: const TextStyle(
-                      fontSize: 18.0,
-                      fontFamily: 'Poppins-ExtraBold',
-                      fontWeight: FontWeight.w800,
-                      color: AppColors.mainColor),
+                  fontFamily: 'Poppins-ExtraBold',
+                  fontWeight: FontWeight.w800,
+                  textColor:AppColors.mainColor,
                 ),
                 const SizedBox(width: 5.0),
               ],

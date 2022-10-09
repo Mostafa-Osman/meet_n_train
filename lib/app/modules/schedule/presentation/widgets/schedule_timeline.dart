@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 import '../../../../common/themes/app_colors.dart';
+import '../../../../widgets/defaulr_text.dart';
 import '../cubit/schedule_cubit.dart';
 
 class ScheduleTimeline extends StatelessWidget {
@@ -33,17 +34,19 @@ class ScheduleTimeline extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
             child: Column(
               children: [
-                Text(
-                  scheduleCubit
+                DefaultText(
+                  title:   scheduleCubit
                       .formatDate(scheduleCubit.scheduleModel[index].date, 'dd')
                       .toString(),
-                  style: const TextStyle(color: AppColors.whiteColor),
+                  fontSize: 15.0,
+                  textColor: AppColors.whiteColor,
                 ),
-                Text(
-                  scheduleCubit
+                DefaultText(
+                  title:   scheduleCubit
                       .formatDate(scheduleCubit.scheduleModel[index].date, 'EE')
                       .toString(),
-                  style: const TextStyle(color: AppColors.whiteColor),
+                  fontSize: 13.0,
+                  textColor: AppColors.whiteColor,
                 ),
               ],
             ),

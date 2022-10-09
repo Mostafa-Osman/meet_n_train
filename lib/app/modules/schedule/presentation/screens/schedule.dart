@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meet_n_train/app/modules/schedule/presentation/cubit/schedule_cubit.dart';
 
 import '../../../../common/themes/app_colors.dart';
+import '../../../../widgets/defaulr_text.dart';
 import '../widgets/custom_cart.dart';
 import '../widgets/schedule_timeline.dart';
 
@@ -14,17 +15,17 @@ class ScheduleScreen extends StatelessWidget {
     final scheduleCubit = BlocProvider.of<ScheduleCubit>(context);
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        leading: Image.asset(
-          'assets/icons/left-arrow.png',
-        ),
-        title: const Text(
-          'Schedule',
-          style: TextStyle(fontFamily: 'Poppins-semiBold', color: Colors.black),
-        ),
-      ),
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          leading: Image.asset(
+            'assets/icons/left-arrow.png',
+          ),
+          title: const DefaultText(
+            title: 'Schedule',
+            fontFamily: 'Poppins-semiBold',
+            fontSize: 25.0,
+          )),
       body: RefreshIndicator(
         color: AppColors.mainColor,
         onRefresh: () async {
@@ -40,13 +41,10 @@ class ScheduleScreen extends StatelessWidget {
                   )
                 : state is ScheduleError
                     ? Center(
-                        child: Text(
-                          state.errorMessage,
-                          style: const TextStyle(
-                            fontSize: 20.0,
-                            fontFamily: 'Poppins-semiBold',
-                            fontWeight: FontWeight.w500,
-                          ),
+                        child: DefaultText(
+                          title: state.errorMessage,
+                          fontFamily: 'Poppins-semiBold',
+                          fontSize: 20.0,
                         ),
                       )
                     : Container(
@@ -73,29 +71,24 @@ class ScheduleScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(width: 10.0),
-                                Text(
-                                  scheduleCubit.numberOfDate,
-                                  style: const TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 40.0,
-                                      fontWeight: FontWeight.w900),
+                                DefaultText(
+                                  title:   scheduleCubit.numberOfDate,
+                                  fontSize: 40.0,
+                                    fontWeight: FontWeight.w900
                                 ),
                                 const SizedBox(width: 5.0),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      scheduleCubit.dateName,
-                                      style: TextStyle(
-                                          color: AppColors.greyColor,
-                                          fontFamily: 'Poppins'),
+                                    DefaultText(
+                                        title:  scheduleCubit.dateName,
+                                      textColor: AppColors.greyColor,
+                                      fontSize: 15.0,
                                     ),
-                                    Text(
-                                      scheduleCubit.date,
-                                      style: const TextStyle(
-                                          fontSize: 15.0,
-                                          fontFamily: 'Poppins-semiBold',
-                                          fontWeight: FontWeight.w500),
+                                    DefaultText(
+                                      title:   scheduleCubit.date,
+                                        fontSize: 15.0,
+                                        fontFamily: 'Poppins-semiBold',
                                     ),
                                   ],
                                 )

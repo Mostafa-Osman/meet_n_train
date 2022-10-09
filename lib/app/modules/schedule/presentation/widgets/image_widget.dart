@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../common/themes/app_colors.dart';
+import '../../../../widgets/defaulr_text.dart';
 import '../cubit/schedule_cubit.dart';
 
 class ImageWidget extends StatelessWidget {
@@ -51,13 +52,10 @@ class ImageWidget extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 10.0),
-                  Text(
-                    scheduleCubit.scheduleModel[index].community.title,
-                    style: const TextStyle(
-                      fontSize: 12.0,
-                      fontFamily: 'Poppins-semiBold',
-                      fontWeight: FontWeight.w500,
-                    ),
+                  DefaultText(
+                    title: scheduleCubit.scheduleModel[index].community.title,
+                    fontSize: 12.0,
+                    fontFamily: 'Poppins-semiBold',
                   ),
                 ],
               )),
@@ -66,22 +64,20 @@ class ImageWidget extends StatelessWidget {
           bottom: 10.0,
           left: 10.0,
           child: Container(
-              padding: const EdgeInsets.only(
-                  right: 10.0, left: 10.0, bottom: 5.0, top: 5.0),
-              decoration: BoxDecoration(
-                  color: AppColors.whiteColor2,
-                  borderRadius: BorderRadius.circular(20.0)),
-              child: Text(
-                scheduleCubit.scheduleModel[index].spots == 0
-                    ? 'unlimited'
-                    : '${scheduleCubit.scheduleModel[index].spots} sport left',
-                style: const TextStyle(
-                  fontSize: 12.0,
-                  fontFamily: 'Poppins-semiBold',
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.mainColor,
-                ),
-              )),
+            padding: const EdgeInsets.only(
+                right: 10.0, left: 10.0, bottom: 5.0, top: 5.0),
+            decoration: BoxDecoration(
+                color: AppColors.whiteColor2,
+                borderRadius: BorderRadius.circular(20.0)),
+            child: DefaultText(
+              title: scheduleCubit.scheduleModel[index].spots == 0
+                  ? 'unlimited'
+                  : '${scheduleCubit.scheduleModel[index].spots} sport left',
+              fontSize: 12.0,
+              fontFamily: 'Poppins-semiBold',
+              textColor: AppColors.mainColor,
+            ),
+          ),
         ),
       ],
     );

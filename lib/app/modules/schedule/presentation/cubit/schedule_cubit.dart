@@ -52,7 +52,7 @@ class ScheduleCubit extends Cubit<ScheduleState> {
 
   void titleDate() {
     numberOfDate = formatDate(scheduleModel[index].date, 'dd');
-    dateName = formatDate(scheduleModel[index].date, 'EE');
+    dateName = formatDate(scheduleModel[index].date, 'EEEE');
     date = formatDate(scheduleModel[index].date, 'MMMM yyyy');
     log(index.toString());
     emit(RefreshUi());
