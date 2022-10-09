@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meet_n_train/app/modules/schedule/presentation/cubit/schedule_cubit.dart';
 
+import '../../../../common/themes/app_colors.dart';
 import '../widgets/custom_cart.dart';
 import '../widgets/schedule_timeline.dart';
 
@@ -25,7 +26,7 @@ class ScheduleScreen extends StatelessWidget {
         ),
       ),
       body: RefreshIndicator(
-        color: const Color(0xFFFF5040),
+        color: AppColors.mainColor,
         onRefresh: () async {
           await BlocProvider.of<ScheduleCubit>(context).getSchedule();
         },
@@ -34,7 +35,7 @@ class ScheduleScreen extends StatelessWidget {
             return state is ScheduleLoading
                 ? const Center(
                     child: CircularProgressIndicator(
-                      color: Color(0xFFFF5040),
+                      color: AppColors.mainColor,
                     ),
                   )
                 : state is ScheduleError
@@ -52,7 +53,7 @@ class ScheduleScreen extends StatelessWidget {
                         height: MediaQuery.of(context).size.height,
                         width: MediaQuery.of(context).size.width,
                         padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                        color: Colors.white,
+                        color: AppColors.whiteColor,
                         child: Column(
                           children: [
                             Row(
@@ -65,10 +66,10 @@ class ScheduleScreen extends StatelessWidget {
                                         Radius.circular(10.0),
                                       ),
                                       border: Border.all(
-                                          color: const Color(0xFFFF5040))),
+                                          color: AppColors.mainColor)),
                                   child: const Icon(
                                     Icons.calendar_today_outlined,
-                                    color: Color(0xFFFF5040),
+                                    color: AppColors.mainColor,
                                   ),
                                 ),
                                 const SizedBox(width: 10.0),
@@ -85,8 +86,8 @@ class ScheduleScreen extends StatelessWidget {
                                   children: [
                                     Text(
                                       scheduleCubit.dateName,
-                                      style: const TextStyle(
-                                          color: Colors.grey,
+                                      style: TextStyle(
+                                          color: AppColors.greyColor,
                                           fontFamily: 'Poppins'),
                                     ),
                                     Text(

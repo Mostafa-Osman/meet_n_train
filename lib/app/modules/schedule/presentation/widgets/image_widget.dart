@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../common/themes/app_colors.dart';
 import '../cubit/schedule_cubit.dart';
 
 class ImageWidget extends StatelessWidget {
@@ -31,12 +32,12 @@ class ImageWidget extends StatelessWidget {
               padding: const EdgeInsets.only(
                   right: 10.0, left: 10.0, bottom: 5.0, top: 5.0),
               decoration: BoxDecoration(
-                  color: const Color(0xFFE1D9DC),
+                  color: AppColors.whiteColor2,
                   borderRadius: BorderRadius.circular(20.0)),
               child: Row(
                 children: [
                   const CircleAvatar(
-                    backgroundColor: Colors.white,
+                    backgroundColor: AppColors.whiteColor,
                     radius: 12,
                     child: CircleAvatar(
                       radius: 10,
@@ -68,7 +69,7 @@ class ImageWidget extends StatelessWidget {
               padding: const EdgeInsets.only(
                   right: 10.0, left: 10.0, bottom: 5.0, top: 5.0),
               decoration: BoxDecoration(
-                  color: const Color(0xFFE1D9DC),
+                  color: AppColors.whiteColor2,
                   borderRadius: BorderRadius.circular(20.0)),
               child: Text(
                 scheduleCubit.scheduleModel[index].spots == 0
@@ -78,7 +79,7 @@ class ImageWidget extends StatelessWidget {
                   fontSize: 12.0,
                   fontFamily: 'Poppins-semiBold',
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFFFF5040),
+                  color: AppColors.mainColor,
                 ),
               )),
         ),
