@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meet_n_train/app/modules/schedule/presentation/cubit/schedule_cubit.dart';
 
 import '../../../../common/themes/app_colors.dart';
-import '../../../../widgets/defaulr_text.dart';
+import '../../../../widgets/default_text.dart';
 import '../widgets/custom_cart.dart';
 import '../widgets/schedule_timeline.dart';
 

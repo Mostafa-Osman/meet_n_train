@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../common/themes/app_colors.dart';
-import '../../../../widgets/defaulr_text.dart';
+import '../../../../widgets/default_text.dart';
 import '../cubit/schedule_cubit.dart';
 
 class ImageWidget extends StatelessWidget {

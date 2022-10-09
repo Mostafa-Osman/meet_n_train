@@ -5,7 +5,7 @@ import 'package:meet_n_train/app/modules/schedule/presentation/cubit/schedule_cu
 import 'package:meet_n_train/app/modules/schedule/presentation/widgets/image_widget.dart';
 import 'package:meet_n_train/app/modules/schedule/presentation/widgets/joined_users.dart';
 
-import '../../../../widgets/defaulr_text.dart';
+import '../../../../widgets/default_text.dart';
 
 class CustomCart extends StatelessWidget {
   const CustomCart({Key? key, required this.index}) : super(key: key);
